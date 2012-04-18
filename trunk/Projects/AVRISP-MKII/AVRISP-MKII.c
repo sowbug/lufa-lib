@@ -67,6 +67,10 @@ void SetupHardware(void)
 	MCUSR &= ~(1 << WDRF);
 	wdt_disable();
 
+  // Enable BUFFER-OE (active low)
+  DDRB |= (1 << 6);
+  PORTB &= ~(1 << 6);
+
 	/* Disable clock division */
 	clock_prescale_set(clock_div_1);
 
