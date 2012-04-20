@@ -77,6 +77,9 @@ void SetupHardware(void)
 	/* Hardware Initialization */
 	LEDs_Init();
 	USB_Init();
+
+  // Set buffer enable to output
+  DDRB |= _BV(DDB6);
 }
 
 /** Event handler for the library USB Connection event. */

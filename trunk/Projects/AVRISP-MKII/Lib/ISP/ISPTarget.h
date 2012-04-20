@@ -82,6 +82,7 @@
 		                                      const uint8_t PollValue,
 		                                      const uint8_t DelayMS,
 		                                      const uint8_t ReadMemCommand);
+		void    ISPTarget_EnableBuffer(bool shouldEnable);
 
 	/* Inline Functions: */
 		/** Sends a byte of ISP data to the attached target, using the appropriate SPI hardware or

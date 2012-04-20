@@ -278,8 +278,15 @@ void ISPTarget_ChangeTargetResetLine(const bool ResetTarget)
 	}
 	else
 	{
+#if 0
 		AUX_LINE_DDR  &= ~AUX_LINE_MASK;
 		AUX_LINE_PORT &= ~AUX_LINE_MASK;
+#else
+		if ((V2Params_GetParameterValue(PARAM_RESET_POLARITY)))
+		  AUX_LINE_PORT |=  AUX_LINE_MASK;
+		else
+		  AUX_LINE_PORT &= ~AUX_LINE_MASK;
+#endif
 	}
 }
 
@@ -364,6 +371,14 @@ uint8_t ISPTarget_WaitForProgComplete(const uint8_t ProgrammingMode,
 	wdt_reset();
 
 	return ProgrammingStatus;
+}
+
+void ISPTarget_EnableBuffer(bool shouldEnable) {
+  if (shouldEnable) {
+    PORTB &= ~_BV(PINB6);
+  } else {
+    PORTB |= _BV(PINB6);
+  }
 }
 
 #endif

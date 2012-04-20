@@ -64,6 +64,8 @@ void ISPProtocol_EnterISPMode(void)
 
 	CurrentAddress = 0;
 
+  ISPTarget_EnableBuffer(true);
+
 	/* Perform execution delay, initialize SPI bus */
 	ISPProtocol_DelayMS(Enter_ISP_Params.ExecutionDelayMS);
 	ISPTarget_EnableTargetISP();
@@ -127,6 +129,8 @@ void ISPProtocol_LeaveISPMode(void)
 	Endpoint_Write_8(CMD_LEAVE_PROGMODE_ISP);
 	Endpoint_Write_8(STATUS_CMD_OK);
 	Endpoint_ClearIN();
+
+  ISPTarget_EnableBuffer(false);
 }
 
 /** Handler for the CMD_PROGRAM_FLASH_ISP and CMD_PROGRAM_EEPROM_ISP commands, writing out bytes,
