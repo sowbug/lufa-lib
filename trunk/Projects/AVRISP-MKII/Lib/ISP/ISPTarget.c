@@ -375,9 +375,9 @@ uint8_t ISPTarget_WaitForProgComplete(const uint8_t ProgrammingMode,
 
 void ISPTarget_EnableBuffer(bool shouldEnable) {
   if (shouldEnable) {
-    PORTB &= ~_BV(PINB6);
+    PORTB &= ~(_BV(PINB6) | _BV(PINB7));
   } else {
-    PORTB |= _BV(PINB6);
+    PORTB |= (_BV(PINB6) | _BV(PINB7));
   }
 }
 

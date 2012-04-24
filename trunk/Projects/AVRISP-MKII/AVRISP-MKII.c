@@ -70,6 +70,8 @@ void SetupHardware(void)
   // Enable BUFFER-OE (active low)
   DDRB |= (1 << 6);
   PORTB &= ~(1 << 6);
+  DDRB |= (1 << 7);
+  PORTB &= ~(1 << 7);
 
 	/* Disable clock division */
 	clock_prescale_set(clock_div_1);
